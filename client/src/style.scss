@@ -1,14 +1,37 @@
 @import '../bower_components/materialize/sass/materialize.scss';
+@import '../bower_components/font-awesome/scss/font-awesome.scss';
 
-#main-menu h1 {
+.fa-left {
+  @extend .fa;
+  margin-right: 0.2em;
+}
+
+#main-menu h1.logo {
   display: inline-block;
   margin: 0;
 }
 
-#main-menu { @extend .red, .accent-3; }
+h1.logo {
+  font-size: 50px;
+}
+
+h1.logo:before {
+  @extend .fa-left, .fa-calendar;
+  font-size: 80%;
+}
+
+#main-menu {
+  @extend .red, .accent-3;
+  padding: 0 2em;
+}
 
 #main-menu ul.menu { @extend .right; }
 
 #main-menu ul.menu li a {
   font-weight: bold;
+  font-size: 120%;
 }
+
+#main-menu ul.menu li.appointments a:before { @extend .fa-left, .fa-list; }
+#main-menu ul.menu li.professionals a:before { @extend .fa-left, .fa-user-md; }
+#main-menu ul.menu li.clients a:before { @extend .fa-left, .fa-users; }
