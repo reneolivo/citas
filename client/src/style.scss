@@ -35,3 +35,7 @@ h1.logo:before {
 #main-menu ul.menu li.appointments a:before { @extend .fa-left, .fa-list; }
 #main-menu ul.menu li.professionals a:before { @extend .fa-left, .fa-user-md; }
 #main-menu ul.menu li.clients a:before { @extend .fa-left, .fa-users; }
+
+#main-content {
+  padding: 0 5em;
+}

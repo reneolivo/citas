@@ -6,11 +6,22 @@
         <h1 class="logo">Citas App</h1>
 
         <ul class="menu">
-          <li class="appointments"><a href="#">Citas</a></li>
-          <li class="professionals"><a href="#">Doctores</a></li>
-          <li class="clients"><a href="#">Pacientes</a></li>
+          <li
+          repeat.for="row of router.navigation"
+          class="
+            ${row.config.name}
+            ${row.isActive ? 'active' : ''}
+          ">
+            <a href.bind="row.href">
+              ${ row.title }
+            </a>
+          </li>
         </ul>
       </nav>
     </header>
+
+    <section id="main-content">
+      <router-view></router-view>
+    </section>
   </div>
 </template>
