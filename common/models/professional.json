@@ -1,0 +1,21 @@
+{
+  "name": "Professional",
+  "plural": "professionals",
+  "base": "Person",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "specialties": {
+      "type": [
+        "string"
+      ],
+      "default": []
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

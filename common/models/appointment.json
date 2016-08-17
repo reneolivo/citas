@@ -1,0 +1,34 @@
+{
+  "name": "Appointment",
+  "plural": "appointments",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "date": {
+      "type": "date",
+      "required": true
+    },
+    "notes": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "validations": [],
+  "relations": {
+    "client": {
+      "type": "hasOne",
+      "model": "Client",
+      "foreignKey": "clientId"
+    },
+    "availability": {
+      "type": "hasOne",
+      "model": "Availability",
+      "foreignKey": "availabilityId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

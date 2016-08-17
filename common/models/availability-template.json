@@ -1,0 +1,27 @@
+{
+  "name": "AvailabilityTemplate",
+  "plural": "availability-templates",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "timeStarts": {
+      "type": "number",
+      "required": true
+    },
+    "timeEnds": {
+      "type": "number",
+      "required": true
+    },
+    "limit": {
+      "type": "number",
+      "default": 50
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

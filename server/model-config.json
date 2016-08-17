@@ -31,5 +31,29 @@
   "Role": {
     "dataSource": "db",
     "public": false
+  },
+  "Person": {
+    "dataSource": "db",
+    "public": true
+  },
+  "AvailabilityTemplate": {
+    "dataSource": "db",
+    "public": true
+  },
+  "Professional": {
+    "dataSource": "db",
+    "public": true
+  },
+  "Availability": {
+    "dataSource": "db",
+    "public": true
+  },
+  "Appointment": {
+    "dataSource": "db",
+    "public": true
+  },
+  "Client": {
+    "dataSource": "db",
+    "public": true
   }
 }

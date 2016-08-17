@@ -1,0 +1,26 @@
+{
+  "name": "Availability",
+  "plural": "availabilities",
+  "base": "AvailabilityTemplate",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "weekDay": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "validations": [],
+  "relations": {
+    "professional": {
+      "type": "belongsTo",
+      "model": "Professional",
+      "as": "professional",
+      "foreignKey": "professionalId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
