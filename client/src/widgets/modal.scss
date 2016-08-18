@@ -1,0 +1,39 @@
+@import 'materialize/sass/materialize';
+@import 'font-awesome/scss/font-awesome';
+
+.material-modal {
+  .close {
+    @extend .blue-grey-text;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 1.5em;
+    z-index: 1;
+
+    &:hover { @extend .deep-orange-text; }
+  }
+
+  .modal-footer {
+    padding-top: 10px;
+    padding-right: 20px;
+    text-align: right;
+
+    button {
+      @extend .btn-flat, .blue-grey, .white-text, .lighten-2;
+      &:before { @extend .fa; }
+      &:hover { @extend .darken-1; }
+    }
+
+    button.close:before { @extend .fa-times; }
+
+    button.add {
+      @extend .blue;
+      &:before { @extend .fa-plus; }
+    }
+
+    button.save {
+      @extend .blue;
+      &:before { @extend .fa-floppy-o; }
+    }
+  }
+}

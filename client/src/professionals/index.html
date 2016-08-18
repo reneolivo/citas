@@ -1,3 +1,15 @@
 <template>
+  <require from="./professional-dialog"></require>
+
   <h2>Doctores</h2>
+
+  <div id="main-actions-bar" class="actions">
+    <button class="add" click.delegate="professionalDialog.open()">
+      Agregar Doctor
+    </button>
+  </div>
+
+  <professional-dialog
+  professional-dialog.ref="professionalDialog"
+  ></professional-dialog>
 </template>

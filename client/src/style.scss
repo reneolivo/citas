@@ -1,5 +1,5 @@
-@import '../bower_components/materialize/sass/materialize.scss';
-@import '../bower_components/font-awesome/scss/font-awesome.scss';
+@import 'materialize/sass/materialize';
+@import 'font-awesome/scss/font-awesome';
 
 .fa-left {
   @extend .fa;
@@ -39,3 +39,10 @@ h1.logo:before {
 #main-content {
   padding: 0 5em;
 }
+
+#main-actions-bar button {
+  @extend .btn, .waves-effect, .waves-light;
+}
+
+#main-actions-bar button.add { @extend .blue; }
+#main-actions-bar button.add:before { @extend .fa-left, .fa-plus; }

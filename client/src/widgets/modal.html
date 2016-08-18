@@ -1,0 +1,21 @@
+<template>
+  <require from="./modal.css"></require>
+
+  <div class="material-modal modal modal-fixed-footer">
+    <a class="close" href="#/dang" click.delegate="close()">
+      <i class="fa fa-times"></i>
+    </a>
+
+    <div class="modal-content">
+      <slot></slot>
+
+    </div>
+    <div class="modal-footer">
+      <slot name="modal-footer">
+        <button click.delegate="close()">
+          Aceptar
+        </button>
+      </slot>
+    </div>
+  </div>
+</template>
