@@ -2,7 +2,7 @@
 @import 'font-awesome/scss/font-awesome';
 
 .material-modal {
-  .close {
+  a.close {
     @extend .blue-grey-text;
     position: absolute;
     right: 20px;
@@ -19,12 +19,16 @@
     text-align: right;
 
     button {
-      @extend .btn-flat, .blue-grey, .white-text, .lighten-2;
+      @extend .btn-flat, .blue-grey, .white-text, .lighten-1;
       &:before { @extend .fa; }
       &:hover { @extend .darken-1; }
     }
 
-    button.close:before { @extend .fa-times; }
+    button.close {
+      @extend .lighten-3;
+      &:before { @extend .fa-times; }
+      &:hover { @extend .lighten-1; }
+    }
 
     button.add {
       @extend .blue;

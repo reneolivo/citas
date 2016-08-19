@@ -46,3 +46,7 @@ h1.logo:before {
 
 #main-actions-bar button.add { @extend .blue; }
 #main-actions-bar button.add:before { @extend .fa-left, .fa-plus; }
+
+.input-field.invalid .material-icons {
+  @extend .red-text;
+}

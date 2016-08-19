@@ -1,7 +1,10 @@
-/*
-@import 'materialize/sass/components/color';
-
 .professional-dialog {
-  @extend .red;
+  .row {
+    margin-bottom: 0;
+  }
+
+  .material-icons {
+    font-size: 1.8rem;
+    top: 1rem;
+  }
 }
-*/

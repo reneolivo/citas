@@ -1,8 +1,10 @@
-import {autoinject} from 'aurelia-framework';
+import {autoinject, bindable} from 'aurelia-framework';
 declare const jQuery: any;
 
 @autoinject
 export class Modal {
+  @bindable public width: string = '55%';
+
   constructor(private element: Element) {
   }
 

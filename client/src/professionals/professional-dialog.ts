@@ -10,4 +10,8 @@ export class ProfessionalDialog {
   close() {
     this.modal.close();
   }
+
+  submit(form) {
+    console.log('...', {form: form});
+  }
 }
