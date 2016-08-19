@@ -12,6 +12,9 @@ export class ProfessionalDialog {
   }
 
   submit(form) {
-    console.log('...', {form: form});
+    const submitAttempt = new Event('submitAttempt');
+    form.dispatchEvent(submitAttempt);
+    if (!form.checkValidity()) return;
+    console.log('YES!')
   }
 }

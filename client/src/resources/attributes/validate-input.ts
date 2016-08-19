@@ -19,13 +19,29 @@ export class ValidateInputCustomAttribute {
   protected observeElement(formElement) {
     formElement.classList.add('validate');
 
+    this.observeValueChanges(formElement);
+    this.observeParentFormSubmission(formElement);
+    this.observeBlur(formElement);
+  }
+
+  protected observeValueChanges(formElement) {
     this.observer.getObserver(formElement, 'value')
     .subscribe(() => {
       if (formElement.checkValidity()) {
         this.markAsValid(formElement);
       }
     });
+  }
 
+  protected observeParentFormSubmission(formElement) {
+    jQuery(formElement.form).on('submitAttempt', () => {
+      if (!formElement.checkValidity()) {
+        this.markAsInvalid(formElement);
+      }
+    });
+  }
+
+  protected observeBlur(formElement) {
     jQuery(formElement).on('blur', () => {
       this.checkValidity(formElement);
     });

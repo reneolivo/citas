@@ -7,7 +7,7 @@
   modal.ref="modal"
   width="500px"
   >
-    <form ref="form" submit.delegate="submit(form)">
+    <form ref="form" submit.trigger="submit(form)">
       <h3>Doctor</h3>
 
       <div class="row">
@@ -60,7 +60,7 @@
         Cerrar
       </button>
 
-      <button class="save" click.delegate="submit(formFirstName)">
+      <button class="save" click.delegate="submit(form)">
         Guardar
       </button>
     </div>
