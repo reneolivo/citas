@@ -7,20 +7,32 @@
   modal.ref="modal"
   width="500px"
   >
-    <form ref="form" submit.trigger="submit(form)">
+    <form ref="form" submit.delegate="submit()">
       <h3>Doctor</h3>
 
       <div class="row">
         <div class="input-field col s6" validate-input.bind="formFirstName">
           <i class="material-icons prefix small">account_circle</i>
           <label for="formFirstName">Nombre*</label>
-          <input id="formFirstName" type="text" ref="formFirstName" required>
+          <input
+          id="formFirstName"
+          type="text"
+          value.bind="professional.firstName"
+          ref="formFirstName"
+          required
+          >
         </div>
 
         <div class="input-field col s6" validate-input.bind="formLastName">
           <i class="material-icons prefix small">account_circle</i>
           <label for="formLastName">Apellido*</label>
-          <input id="formLastName" type="text" ref="formLastName" required class="validate">
+          <input
+          id="formLastName"
+          type="text"
+          ref="formLastName"
+          value.bind="professional.lastName"
+          required
+          >
         </div>
       </div>
 
@@ -28,13 +40,23 @@
         <div class="input-field col s6">
           <i class="material-icons prefix small">phone</i>
           <label for="formLandline">Teléfono</label>
-          <input id="formLandline" type="text" class="validate">
+          <input
+          id="formLandline"
+          class="validate"
+          type="text"
+          value.bind="professional.landLine"
+          >
         </div>
 
         <div class="input-field col s6">
           <i class="material-icons prefix small">settings_cell</i>
           <label for="formMobile">Celular</label>
-          <input id="formMobile" type="text" required class="validate">
+          <input
+          id="formMobile"
+          class="validate"
+          type="text"
+          value.bind="professional.mobile"
+          >
         </div>
       </div>
 
@@ -42,7 +64,12 @@
         <div class="input-field col s12" validate-input.bind="formEmail">
           <i class="material-icons prefix small">email</i>
           <label for="formEmail">Email</label>
-          <input id="formEmail" type="email" ref="formEmail" class="validate">
+          <input
+          id="formEmail"
+          type="email"
+          ref="formEmail"
+          value.bind="professional.email"
+          >
         </div>
       </div>
 
@@ -50,7 +77,11 @@
         <div class="input-field col s12">
           <i class="material-icons prefix small">textsms</i>
           <label for="formNotes">Notas</label>
-          <textarea id="formNotes" class="materialize-textarea"></textarea>
+          <textarea
+          id="formNotes"
+          class="materialize-textarea"
+          value.bind="professional.notes"
+          ></textarea>
         </div>
       </div>
     </form>
@@ -60,7 +91,7 @@
         Cerrar
       </button>
 
-      <button class="save" click.delegate="submit(form)">
+      <button class="save" click.delegate="submit()">
         Guardar
       </button>
     </div>
