@@ -3,8 +3,10 @@ import validateForm from '../services/helpers/validate-form';
 
 export class ProfessionalDialog {
   @child('modal') private modal;
+  @child('form') private form;
 
   open() {
+    this.form.reset();
     this.modal.open();
   }
 
