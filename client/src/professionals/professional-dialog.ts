@@ -1,4 +1,5 @@
 import {customElement, child} from 'aurelia-framework';
+import validateForm from '../services/helpers/validate-form';
 
 export class ProfessionalDialog {
   @child('modal') private modal;
@@ -12,9 +13,8 @@ export class ProfessionalDialog {
   }
 
   submit(form) {
-    const submitAttempt = new Event('submitAttempt');
-    form.dispatchEvent(submitAttempt);
-    if (!form.checkValidity()) return;
-    console.log('YES!')
+    if (!validateForm(form)) return;
+
+    console.log('YES!');
   }
 }
