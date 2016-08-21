@@ -1,0 +1,23 @@
+<template>
+  <require from="./modal-form.css"></require>
+
+  <modal
+  class="modal-form"
+  modal.ref="modal"
+  width="500px"
+  >
+    <form ref="formElement" submit.delegate="submit()">
+      <slot></slot>
+    </form>
+
+    <div slot="modal-footer">
+      <button class="close" click.delegate="close()">
+        Cerrar
+      </button>
+
+      <button class="save" click.delegate="submit()">
+        Guardar
+      </button>
+    </div>
+  </modal>
+</template>

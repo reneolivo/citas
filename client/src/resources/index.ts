@@ -2,6 +2,8 @@ import {FrameworkConfiguration} from 'aurelia-framework';
 
 export function configure(config: FrameworkConfiguration) {
   config.globalResources([
-    './attributes/validate-input'
+    './attributes/validate-input',
+    './elements/modal',
+    './elements/modal-form'
   ]);
 }

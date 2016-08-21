@@ -1,99 +1,83 @@
 <template>
-  <require from="../widgets/modal"></require>
-  <require from="./professional-dialog.css"></require>
-
-  <modal
-  class="professional-dialog"
-  modal.ref="modal"
-  width="500px"
+  <modal-form
+  modal-form.ref="modal"
+  form-control.one-way="$this"
   >
-    <form ref="form" submit.delegate="submit()">
-      <h3>Doctor</h3>
+    <h3>Doctor</h3>
 
-      <div class="row">
-        <div class="input-field col s6" validate-input.bind="formFirstName">
-          <i class="material-icons prefix small">account_circle</i>
-          <label for="formFirstName">Nombre*</label>
-          <input
-          id="formFirstName"
-          type="text"
-          value.bind="professional.firstName"
-          ref="formFirstName"
-          required
-          >
-        </div>
-
-        <div class="input-field col s6" validate-input.bind="formLastName">
-          <i class="material-icons prefix small">account_circle</i>
-          <label for="formLastName">Apellido*</label>
-          <input
-          id="formLastName"
-          type="text"
-          ref="formLastName"
-          value.bind="professional.lastName"
-          required
-          >
-        </div>
+    <div class="row">
+      <div class="input-field col s6" validate-input.bind="formFirstName">
+        <i class="material-icons prefix small">account_circle</i>
+        <label for="formFirstName">Nombre*</label>
+        <input
+        id="formFirstName"
+        type="text"
+        value.bind="professional.firstName"
+        ref="formFirstName"
+        required
+        >
       </div>
 
-      <div class="row">
-        <div class="input-field col s6">
-          <i class="material-icons prefix small">phone</i>
-          <label for="formLandline">Teléfono</label>
-          <input
-          id="formLandline"
-          class="validate"
-          type="text"
-          value.bind="professional.landLine"
-          >
-        </div>
-
-        <div class="input-field col s6">
-          <i class="material-icons prefix small">settings_cell</i>
-          <label for="formMobile">Celular</label>
-          <input
-          id="formMobile"
-          class="validate"
-          type="text"
-          value.bind="professional.mobile"
-          >
-        </div>
+      <div class="input-field col s6" validate-input.bind="formLastName">
+        <i class="material-icons prefix small">account_circle</i>
+        <label for="formLastName">Apellido*</label>
+        <input
+        id="formLastName"
+        type="text"
+        ref="formLastName"
+        value.bind="professional.lastName"
+        required
+        >
       </div>
-
-      <div class="row">
-        <div class="input-field col s12" validate-input.bind="formEmail">
-          <i class="material-icons prefix small">email</i>
-          <label for="formEmail">Email</label>
-          <input
-          id="formEmail"
-          type="email"
-          ref="formEmail"
-          value.bind="professional.email"
-          >
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="input-field col s12">
-          <i class="material-icons prefix small">textsms</i>
-          <label for="formNotes">Notas</label>
-          <textarea
-          id="formNotes"
-          class="materialize-textarea"
-          value.bind="professional.notes"
-          ></textarea>
-        </div>
-      </div>
-    </form>
-
-    <div slot="modal-footer">
-      <button class="close" click.delegate="close()">
-        Cerrar
-      </button>
-
-      <button class="save" click.delegate="submit()">
-        Guardar
-      </button>
     </div>
-  </modal>
+
+    <div class="row">
+      <div class="input-field col s6">
+        <i class="material-icons prefix small">phone</i>
+        <label for="formLandline">Teléfono</label>
+        <input
+        id="formLandline"
+        class="validate"
+        type="text"
+        value.bind="professional.landLine"
+        >
+      </div>
+
+      <div class="input-field col s6">
+        <i class="material-icons prefix small">settings_cell</i>
+        <label for="formMobile">Celular</label>
+        <input
+        id="formMobile"
+        class="validate"
+        type="text"
+        value.bind="professional.mobile"
+        >
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12" validate-input.bind="formEmail">
+        <i class="material-icons prefix small">email</i>
+        <label for="formEmail">Email</label>
+        <input
+        id="formEmail"
+        type="email"
+        ref="formEmail"
+        value.bind="professional.email"
+        >
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix small">textsms</i>
+        <label for="formNotes">Notas</label>
+        <textarea
+        id="formNotes"
+        class="materialize-textarea"
+        value.bind="professional.notes"
+        ></textarea>
+      </div>
+    </div>
+  </modal-form>
 </template>

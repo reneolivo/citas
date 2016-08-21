@@ -5,17 +5,14 @@ import Toast from '../services/helpers/toast';
 
 @autoinject
 export class ProfessionalDialog {
-  @child('modal') private modal;
-  @child('form') private form;
   protected professional: ProfessionalModel;
+  @child('modal-form') private modal;
 
   constructor(
-    private professionals: Professionals,
-    private toast: Toast
+    private professionals: Professionals
   ) {}
 
   open() {
-    this.reset();
     this.modal.open();
   }
 
@@ -24,41 +21,11 @@ export class ProfessionalDialog {
   }
 
   reset() {
-    this.form.reset();
-
     this.professional = new ProfessionalModel();
   }
 
   submit() {
-    if (!validateForm(this.form)) {
-      this.toast.warning(`
-        <i class="fa-left fa-exclamation"></i>
-        Por favor, complete los datos del formulario correctamente
-      `);
-
-      return;
-    }
-
-    this.professionals.create(this.professional)
-    .then(
-      () => this.submitSuccess(),
-      () => this.submitError()
-    );
-  }
-
-  protected submitSuccess() {
-    this.toast.success(`
-      <i class="fa-left fa-floppy-o"></i>
-      Doctor guardado correctamente
-    `, 10000);
-    this.close();
-  }
-
-  protected submitError() {
-    this.toast.error(`
-      <i class="fa-left fa-exclamation-triangle"></i>
-      Hubo un error. Intente de nuevo.
-    `, 10000);
+    return this.professionals.create(this.professional);
   }
 }
 
