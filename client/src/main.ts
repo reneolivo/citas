@@ -1,5 +1,6 @@
 import {Aurelia} from 'aurelia-framework'
 import environment from './environment';
+import 'jquery';
 
 //Configure Bluebird Promises.
 //Note: You may want to use environment-specific configuration.

@@ -35,7 +35,7 @@
   "unitTestRunner": {
     "id": "karma",
     "displayName": "Karma",
-    "source": "test/unit/**/*.ts"
+    "source": "src/**/*.spec.ts"
   },
   "paths": {
     "root": "src",
@@ -112,6 +112,7 @@
           "aurelia-task-queue",
           "aurelia-templating",
           "aurelia-templating-binding",
+          "jquery",
           {
             "name": "text",
             "path": "../scripts/text"

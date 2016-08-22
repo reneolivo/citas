@@ -58,7 +58,7 @@
 
   function requireTests() {
     var TEST_REGEXP = /(spec)\.js$/i;
-    var allTestFiles = ['/base/test/unit/setup.js'];
+    var allTestFiles = ['/base/src/setup.spec.js'];
 
     Object.keys(window.__karma__.files).forEach(function(file) {
       if (TEST_REGEXP.test(file)) {
