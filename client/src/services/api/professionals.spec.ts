@@ -6,6 +6,29 @@ describe('Professionals', () => {
 
   beforeEach(() => service = new Professionals());
 
+  describe('getting all professionals', () => {
+    it('should define a getAll method', () => {
+      expect(typeof service.getAll).toBe('function');
+    });
+
+    it('should get the data from the endpoint', () => {
+      spyOn(jQuery, 'get');
+      service.getAll();
+      expect(jQuery.get).toHaveBeenCalledWith(
+        jasmine.stringMatching('/api/professionals')
+      );
+    });
+
+    it('should return a promise', () => {
+      const promise = new Promise(() => {});
+      let result;
+
+      spyOn(jQuery, 'get').and.returnValue(promise);
+      result = service.getAll();
+      expect(result).toBe(promise);
+    });
+  });
+
   describe('create professionals', () => {
     const data = { firstName: 'Jon', lastName: 'Snow' };
 
