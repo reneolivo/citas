@@ -10,13 +10,13 @@ A simple appointment app using [LoopBack](http://loopback.io) and [Aurelia](http
 ---
 
 ## Running for development:
-On the root folder run `npm start`. The following endpoints will be available to you:
+On the root folder run `npm start`. The following urls will be available to you:
 
-[http://localhost:9000](http://localhost:9000) : The root of the app (with browser-sync).
-[http://localhost:3000/api](http://localhost:3000/api) : The API root URL.
-[http://localhost:3000/explorer](http://localhost:3000/explorer) : The API explorer.
-[http://localhost:3001](http://localhost:3001) : Browser-Sync configuration.
-[http://localhost:3000](http://localhost:3000) : The root of the app (no browser-sync).
+* [http://localhost:9000](http://localhost:9000) : The root of the app (with browser-sync).
+* [http://localhost:3000/api](http://localhost:3000/api) : The API root URL.
+* [http://localhost:3000/explorer](http://localhost:3000/explorer) : The API explorer.
+* [http://localhost:3001](http://localhost:3001) : Browser-Sync configuration.
+* [http://localhost:3000](http://localhost:3000) : The root of the app (no browser-sync).
 
 ---
 
