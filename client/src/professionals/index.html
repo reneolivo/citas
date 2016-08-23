@@ -9,6 +9,33 @@
     </button>
   </div>
 
+  <table class="striped highlight responsive-table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Nombre Completo</th>
+        <th>Teléfono</th>
+        <th>Celular</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr repeat.for="professional of professionals">
+        <td class="center-align">
+          <i class="fa fa-user-md fa-2x"></i>
+        </td>
+        <td>${professional.firstName} ${professional.lastName}</td>
+        <td>${professional.landLine}</td>
+        <td>${professional.mobile}</td>
+        <td>
+          <a
+          href="mailto:${professional.email}"
+          >${professional.email}</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
   <professional-dialog
   professional-dialog.ref="professionalDialog"
   ></professional-dialog>

@@ -20,9 +20,13 @@ h1.logo:before {
   font-size: 80%;
 }
 
-#main-menu {
+#main-header {
   @extend .red, .accent-3;
-  padding: 0 2em;
+}
+
+#main-menu {
+  @extend .red, .accent-3, .container;
+  box-shadow: none;
 }
 
 #main-menu ul.menu { @extend .right; }
@@ -37,6 +41,7 @@ h1.logo:before {
 #main-menu ul.menu li.clients a:before { @extend .fa-left, .fa-users; }
 
 #main-content {
+  @extend .container;
   padding: 0 5em;
 }
 
@@ -49,4 +54,13 @@ h1.logo:before {
 
 .input-field.invalid .material-icons {
   @extend .red-text;
+}
+
+table.striped > tbody > tr:nth-child(odd) {
+  @extend .blue-grey, .lighten-5;
+  &:hover { @extend .lighten-4; }
+}
+table.striped > tbody > tr:nth-child(even) {
+  @extend .white;
+  &:hover { @extend .blue-grey, .lighten-4; }
 }
