@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "server/server.js",
   "scripts": {
-    "start": "node .",
+    "start": "cd client; ./node_modules/.bin/au run --watch",
     "pretest": "eslint .",
     "posttest": "nsp check"
   },

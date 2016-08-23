@@ -4,6 +4,7 @@ import * as historyApiFallback from 'connect-history-api-fallback/lib';
 import * as project from '../aurelia.json';
 import build from './build';
 import {CLIOptions} from 'aurelia-cli';
+import loopback from './loopback';
 
 function onChange(path) {
   console.log(`File Changed: ${path}`);
@@ -16,6 +17,7 @@ function reload(done) {
 
 let serve = gulp.series(
   build,
+  loopback,
   done => {
     browserSync({
       online: false,

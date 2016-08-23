@@ -11,7 +11,7 @@ export default function processCSS() {
     .pipe(sass({
       importer: importer,
       importerOptions: {
-        roots: ['bower_components']
+        roots: ['node_modules']
       }
     }).on('error', sass.logError))
     .pipe(build.bundle());
