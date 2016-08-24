@@ -19,7 +19,8 @@ export class ModalForm {
   @child('form') private formElement;
 
   constructor(
-    private toast: Toast
+    protected element: Element,
+    protected toast: Toast
   ) {}
 
   open() {
@@ -41,15 +42,7 @@ export class ModalForm {
 
   submit() {
     if (!validateForm(this.formElement)) {
-      const formErrorMessage =
-        this.formErrorMessage ||
-        this.defaultFormErrorMessage;
-
-      this.toast.warning(`
-        <i class="fa-left fa-exclamation"></i>
-        ${this.defaultFormErrorMessage}
-      `);
-
+      this.displayFormWarning();
       return;
     }
 
@@ -57,12 +50,37 @@ export class ModalForm {
 
     this.formControl.submit()
     .then(
-      () => this.submitSuccess(),
+      (result) => this.submitSuccess(result),
       () => this.submitError()
     );
   }
 
-  protected submitSuccess() {
+  protected displayFormWarning() {
+    const formErrorMessage =
+      this.formErrorMessage ||
+      this.defaultFormErrorMessage;
+
+    this.toast.warning(`
+      <i class="fa-left fa-exclamation"></i>
+      ${this.defaultFormErrorMessage}
+    `);
+  }
+
+  protected submitSuccess(result) {
+    this.dispatchEvent(result);
+    this.displaySuccessMessage();
+  }
+
+  protected dispatchEvent(result) {
+    const submitSuccess = new CustomEvent('submit-success', {
+      detail: result,
+      bubbles: true,
+  		cancelable: true
+    });
+    this.element.dispatchEvent(submitSuccess);
+  }
+
+  protected displaySuccessMessage() {
     const successMessage = this.successMessage || this.defaultSuccessMessage;
 
     this.toast.success(`

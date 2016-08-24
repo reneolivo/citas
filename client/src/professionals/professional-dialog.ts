@@ -9,7 +9,6 @@ export class ProfessionalDialog {
   @child('modal-form') private modal;
 
   constructor(
-    protected element: Element,
     protected professionals: Professionals
   ) {}
 
@@ -26,14 +25,7 @@ export class ProfessionalDialog {
   }
 
   submit() {
-    return this.professionals.create(this.professional)
-    .then((result) => {
-      const submitSuccess = new CustomEvent('submit-success', {
-        detail: result
-      });
-      this.element.dispatchEvent(submitSuccess);
-      return result;
-    });
+    return this.professionals.create(this.professional);
   }
 }
 
