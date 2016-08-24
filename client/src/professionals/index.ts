@@ -10,6 +10,10 @@ export class ProfessionalsIndex {
   ) {}
 
   created() {
+    this.loadProfessionals();
+  }
+
+  loadProfessionals() {
     this.professionalsSrv.getAll()
     .then((results) => this.professionals = results);
   }
