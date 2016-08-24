@@ -1,16 +1,13 @@
 var app = require('../../server/server');
 
 module.exports = function(Professional) {
-  Professional.observe('loaded', (context, next) => {
-    appendFutureAppointmentsCount(context).then(
-      () => next(),
-      (error) => next(error)
-    );
+  Professional.observe('loaded', (context) => {
+    return appendFutureAppointmentsCount(context);
   });
 };
 
 function appendFutureAppointmentsCount(context) {
-  var professional = context.data;
+  var professional = context.instance;
 
   if (!professional) return Promise.resolve();
 
