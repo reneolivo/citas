@@ -13,7 +13,7 @@
       ],
       "default": []
     },
-    "futureAppointmentsCount": {
+    "todaysAppointmentCount": {
       "type": "number",
       "default": 0
     }

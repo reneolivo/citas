@@ -1,14 +1,13 @@
 var app = require('../../server/server');
+var moment = require('moment');
 
 module.exports = function(Professional) {
   Professional.observe('loaded', (context) => {
-    return appendFutureAppointmentsCount(context);
+    return appendTodaysAppointmentCount(context.instance);
   });
 };
 
-function appendFutureAppointmentsCount(context) {
-  var professional = context.instance;
-
+function appendTodaysAppointmentCount(professional) {
   if (!professional) return Promise.resolve();
 
   return app.models.Availability.find({
@@ -16,14 +15,17 @@ function appendFutureAppointmentsCount(context) {
   })
   .then((results) => results.map((r) => r.id))
   .then((ids) => {
+    var todayStarts = moment().startOf('day').toDate();
+    var todayEnds = moment().endOf('day').toDate();
+
     return app.models.Appointment.find({ // count is not working
       where: {
-        date: { gt: new Date() },
+        date: { between: [ todayStarts, todayEnds ] },
         availabilityId: { inq: ids }
       }
     });
   })
   .then((results) => {
-    professional.futureAppointmentsCount = results.length;
+    professional.todaysAppointmentCount = results.length;
   });
 }

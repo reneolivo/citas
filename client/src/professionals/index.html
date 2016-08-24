@@ -17,6 +17,7 @@
         <th>Teléfono</th>
         <th>Celular</th>
         <th>Email</th>
+        <th>Citas Para Hoy</th>
       </tr>
     </thead>
     <tbody>
@@ -31,6 +32,9 @@
           <a
           href="mailto:${professional.email}"
           >${professional.email}</a>
+        </td>
+        <td>
+          ${professional.todaysAppointmentCount}
         </td>
       </tr>
     </tbody>
