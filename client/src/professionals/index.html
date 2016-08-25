@@ -7,11 +7,20 @@
     <button class="add" click.delegate="professionalDialog.open()">
       Agregar Doctor
     </button>
+
+    <button
+    class="delete"
+    click.delegate="deleteSelectedProfessionals()"
+    disabled.bind="selectedProfessionals.length === 0"
+    >
+      Eliminar Doctores
+    </button>
   </div>
 
   <table class="striped highlight pointer responsive-table">
     <thead>
       <tr>
+        <th></th>
         <th></th>
         <th>Nombre Completo</th>
         <th>Teléfono</th>
@@ -21,14 +30,27 @@
       </tr>
     </thead>
     <tbody>
-      <tr
-      repeat.for="professional of professionals"
-      click.delegate="professionalDialog.open(professional)"
-      >
+      <tr repeat.for="professional of professionals">
         <td class="center-align">
-          <i class="fa fa-user-md fa-2x"></i>
+          <input
+          type="checkbox"
+          id="procheck-${ $index }"
+          class="filled-in"
+          model.bind="professional"
+          checked.bind="selectedProfessionals"
+          />
+          <label for="procheck-${ $index }"></label>
         </td>
-        <td>${professional.firstName} ${professional.lastName}</td>
+        <td class="center-align">
+          <a href="#" click.delegate="professionalDialog.open(professional)">
+            <i class="fa fa-user-md fa-2x"></i>
+          </a>
+        </td>
+        <td>
+          <a href="#" click.delegate="professionalDialog.open(professional)">
+            ${professional.firstName} ${professional.lastName}
+          </a>
+        </td>
         <td>${professional.landLine}</td>
         <td>${professional.mobile}</td>
         <td>

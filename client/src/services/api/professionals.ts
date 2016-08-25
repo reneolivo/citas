@@ -17,4 +17,11 @@ export default class Professional {
       data: data
     });
   }
+
+  delete(id) {
+    return jQuery.ajax({
+      url: `${this.endpoint}/${id}`,
+      type: 'DELETE'
+    });
+  }
 }

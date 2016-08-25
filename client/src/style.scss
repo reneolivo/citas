@@ -6,6 +6,11 @@
   margin-right: 0.2em;
 }
 
+input[type="checkbox"].filled-in:checked + label:after {
+  @extend .grey, .darken-4;
+  border-color: #333;
+}
+
 #main-menu h1.logo {
   display: inline-block;
   margin: 0;
@@ -49,20 +54,28 @@ h1.logo:before {
   @extend .btn, .waves-effect, .waves-light;
 }
 
-#main-actions-bar button.add { @extend .blue; }
-#main-actions-bar button.add:before { @extend .fa-left, .fa-plus; }
+#main-actions-bar button.add {
+  @extend .blue;
+  &:before { @extend .fa-left, .fa-plus; }
+}
+
+#main-actions-bar button.delete {
+  @extend .red;
+  &:before { @extend .fa-left, .fa-times; }
+}
 
 .input-field.invalid .material-icons {
   @extend .red-text;
 }
 
 table.striped > tbody > tr:nth-child(odd) {
-  @extend .blue-grey, .lighten-5;
-  &:hover { @extend .lighten-4; }
+  background: color('grey', 'lighten-4');
 }
 table.striped > tbody > tr:nth-child(even) {
-  @extend .white;
-  &:hover { @extend .blue-grey, .lighten-4; }
+  background: color('grey', 'lighten-5');
+}
+table.striped > tbody > tr:hover {
+  @extend .grey, .lighten-3;
 }
 table.pointer > tbody > tr {
   cursor: pointer;

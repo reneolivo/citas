@@ -78,5 +78,28 @@ describe('Professionals', () => {
       result = service.update(data);
       expect(result).toBe(promise);
     });
-  })
+  });
+
+  describe('delete professionals', () => {
+    it('should define a delete method', () => {
+      expect(typeof service.delete).toBe('function');
+    });
+
+    it('should delete the record when delete is called', () => {
+      spyOn(jQuery, 'ajax');
+      service.delete(1);
+      expect(jQuery.ajax).toHaveBeenCalledWith({
+        url: jasmine.stringMatching(`/api/professionals/1`),
+        type: 'DELETE'
+      });
+    });
+
+    it('should return a promise', () => {
+      const promise = new Promise(() => {});
+      let result;
+      spyOn(jQuery, 'ajax').and.returnValue(promise);
+      result = service.delete(1);
+      expect(result).toBe(promise);
+    });
+  });
 });
