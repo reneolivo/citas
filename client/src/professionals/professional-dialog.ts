@@ -6,13 +6,21 @@ import Toast from '../services/helpers/toast';
 @autoinject
 export class ProfessionalDialog {
   protected professional: ProfessionalModel;
-  @child('modal-form') private modal;
+  @child('modal-form') protected modal;
 
   constructor(
     protected professionals: Professionals
-  ) {}
+  ) {
+    this.reset();
+  }
 
-  open() {
+  open(data?: any) {
+    if (data) {
+      this.professional = new ProfessionalModel(data);
+    } else {
+      this.reset();
+    }
+
     this.modal.open();
   }
 
@@ -25,15 +33,24 @@ export class ProfessionalDialog {
   }
 
   submit() {
-    return this.professionals.create(this.professional);
+    if (this.professional.id) {
+      return this.professionals.update(this.professional);
+    } else {
+      return this.professionals.create(this.professional);
+    }
   }
 }
 
-class ProfessionalModel {
+export class ProfessionalModel {
+  id: number;
   firstName: string;
   lastName: string;
   landLine: string;
   mobile: string;
   email: string;
   notes: string;
+
+  constructor(data: any = {}) {
+    Object.assign(this, data);
+  }
 }

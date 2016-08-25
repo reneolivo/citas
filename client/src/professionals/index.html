@@ -9,7 +9,7 @@
     </button>
   </div>
 
-  <table class="striped highlight responsive-table">
+  <table class="striped highlight pointer responsive-table">
     <thead>
       <tr>
         <th></th>
@@ -21,7 +21,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr repeat.for="professional of professionals">
+      <tr
+      repeat.for="professional of professionals"
+      click.delegate="professionalDialog.open(professional)"
+      >
         <td class="center-align">
           <i class="fa fa-user-md fa-2x"></i>
         </td>

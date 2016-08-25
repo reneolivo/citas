@@ -9,4 +9,12 @@ export default class Professional {
   create(data) {
     return jQuery.post(this.endpoint, data);
   }
+
+  update(data) {
+    return jQuery.ajax({
+      url: `${this.endpoint}/${data.id}`,
+      type: 'PUT',
+      data: data
+    });
+  }
 }

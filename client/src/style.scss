@@ -64,3 +64,6 @@ table.striped > tbody > tr:nth-child(even) {
   @extend .white;
   &:hover { @extend .blue-grey, .lighten-4; }
 }
+table.pointer > tbody > tr {
+  cursor: pointer;
+}

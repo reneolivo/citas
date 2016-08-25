@@ -53,4 +53,30 @@ describe('Professionals', () => {
       expect(result).toBe(promise);
     });
   });
+
+  describe('update professionals', () => {
+    const data = { id: 1, firstName: 'Jon', lastName: 'Snow' };
+
+    it('should define an update method', () => {
+      expect(typeof service.update).toBe('function');
+    });
+
+    it('should post the data to the endpoint', () => {
+      spyOn(jQuery, 'ajax');
+      service.update(data);
+      expect(jQuery.ajax).toHaveBeenCalledWith({
+        url: jasmine.stringMatching(`/api/professionals/${data.id}`),
+        type: 'PUT',
+        data: data
+      });
+    });
+
+    it('should return a promise', () => {
+      const promise = new Promise(() => {});
+      let result;
+      spyOn(jQuery, 'ajax').and.returnValue(promise);
+      result = service.update(data);
+      expect(result).toBe(promise);
+    });
+  })
 });

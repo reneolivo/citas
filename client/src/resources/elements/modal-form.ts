@@ -2,6 +2,7 @@ import {autoinject, bindable, child} from 'aurelia-framework';
 import {Modal} from './modal';
 import validateForm from '../../services/helpers/validate-form';
 import Toast from '../../services/helpers/toast';
+declare const Materialize: any;
 
 @autoinject
 export class ModalForm {
@@ -34,10 +35,7 @@ export class ModalForm {
 
   reset() {
     this.formElement.reset();
-
-    if (this.formControl) {
-      this.formControl.reset();
-    }
+    setTimeout(() => Materialize.updateTextFields(), 0);
   }
 
   submit() {
