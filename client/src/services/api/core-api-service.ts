@@ -1,6 +1,7 @@
 import {autoinject} from 'aurelia-framework';
 import {Http} from '../helpers/http';
 
+@autoinject
 export class CoreApiService {
   baseUrl: string = 'http://localhost:3000/api/';
   endpoint: string = '';

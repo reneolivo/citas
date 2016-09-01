@@ -1,72 +1,13 @@
 <template>
-  <require from="./professional-dialog"></require>
-
-  <h2>Doctores</h2>
-
-  <div id="main-actions-bar" class="actions">
-    <button class="add" click.delegate="professionalDialog.open()">
-      Agregar Doctor
-    </button>
-
-    <button
-    class="delete"
-    click.delegate="deleteSelectedProfessionals()"
-    disabled.bind="selectedProfessionals.length === 0"
-    >
-      Eliminar Doctores
-    </button>
-  </div>
-
-  <table class="striped highlight pointer responsive-table">
-    <thead>
-      <tr>
-        <th></th>
-        <th></th>
-        <th>Nombre Completo</th>
-        <th>Teléfono</th>
-        <th>Celular</th>
-        <th>Email</th>
-        <th>Citas Para Hoy</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr repeat.for="professional of professionals">
-        <td class="center-align">
-          <input
-          type="checkbox"
-          id="procheck-${ $index }"
-          class="filled-in"
-          model.bind="professional"
-          checked.bind="selectedProfessionals"
-          />
-          <label for="procheck-${ $index }"></label>
-        </td>
-        <td class="center-align">
-          <a href="#" click.delegate="professionalDialog.open(professional)">
-            <i class="fa fa-user-md fa-2x"></i>
-          </a>
-        </td>
-        <td>
-          <a href="#" click.delegate="professionalDialog.open(professional)">
-            ${professional.firstName} ${professional.lastName}
-          </a>
-        </td>
-        <td>${professional.landLine}</td>
-        <td>${professional.mobile}</td>
-        <td>
-          <a
-          href="mailto:${professional.email}"
-          >${professional.email}</a>
-        </td>
-        <td>
-          ${professional.todaysAppointmentCount}
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-  <professional-dialog
-  professional-dialog.ref="professionalDialog"
-  submit-success.trigger="loadProfessionals()"
-  ></professional-dialog>
+  <endpoint-manager
+  api-service.bind="professionals"
+  title="Doctores"
+  columns.bind="{
+    'Nombre Completo': '${firstName} ${lastName}',
+    'Teléfono': '${landLine}',
+    'Celular': '${mobile}',
+    'Email': '${email}',
+    'Citas Para hoy': '${todaysAppointmentCount}'
+  }"
+  ></endpoint-manager>
 </template>

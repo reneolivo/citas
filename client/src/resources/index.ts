@@ -4,6 +4,8 @@ export function configure(config: FrameworkConfiguration) {
   config.globalResources([
     './attributes/validate-input',
     './elements/modal',
-    './elements/modal-form'
+    './elements/modal-form',
+    './elements/endpoint-manager',
+    './value-converters/object-keys'
   ]);
 }

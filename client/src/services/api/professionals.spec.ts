@@ -4,7 +4,10 @@ import {CoreApiService} from './core-api-service';
 describe('Professionals', () => {
   let service;
 
-  beforeEach(() => service = new Professionals());
+  beforeEach(() => {
+    const http = jasmine.createSpyObj('Http', ['get','post','put','delete']);
+    service = new Professionals(http);
+  });
 
   it('should be defined', () => {
     expect(Professionals).toBeDefined();
