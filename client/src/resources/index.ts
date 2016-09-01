@@ -6,6 +6,7 @@ export function configure(config: FrameworkConfiguration) {
     './elements/modal',
     './elements/modal-form',
     './elements/endpoint-manager',
-    './value-converters/object-keys'
+    './value-converters/object-to-array',
+    './elements/compile'
   ]);
 }

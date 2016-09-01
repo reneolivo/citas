@@ -1,18 +1,21 @@
 <template>
   <h2>${title}</h2>
 
-  <table class="records">
+  <table class="records-table striped highlight pointer responsive-table">
     <thead>
       <tr>
-        <th repeat.for="header of columns | objectKeys">
-          ${header}
+        <th repeat.for="column of columns | objectToArray">
+          ${column.key}
         </th>
       </tr>
     </thead>
     <tbody>
       <tr repeat.for="record of records">
-        <td repeat.for="key of columns | objectKeys">
-          ${columns[key]}
+        <td repeat.for="column of columns | objectToArray">
+          <compile
+          content.bind="column.value"
+          context.bind="record"
+          ></compile>
         </td>
       </tr>
     </tbody>
