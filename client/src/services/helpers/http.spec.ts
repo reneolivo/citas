@@ -5,7 +5,7 @@ describe('Http', () => {
   const url = 'http://example.com/';
   const data = { payload: 'ABC' };
   const promise = Promise.resolve('ok');
-  const http;
+  let http;
 
   beforeEach(() => {
     spyOn(jQuery, 'get').and.returnValue(promise);
