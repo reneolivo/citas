@@ -1,5 +1,5 @@
 import {autoinject} from 'aurelia-framework';
-import Professionals from '../services/api/professionals';
+import {Professionals} from '../services/api/professionals';
 import Toast from '../services/helpers/toast';
 
 @autoinject

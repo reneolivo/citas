@@ -61,6 +61,6 @@ describe('ProfessionalDialog', () => {
     and .submit() is called`, () => {
     component.professional = jonSnow;
     component.submit();
-    expect(service.update).toHaveBeenCalledWith(jonSnow);
+    expect(service.update).toHaveBeenCalledWith(jonSnow.id, jonSnow);
   });
 });

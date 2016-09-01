@@ -15,17 +15,25 @@ describe('CoreApiService', () => {
     service = new CoreApiService(http);
   });
 
-  it('should define a .baseUrl property', () => {
-    expect(service.baseUrl).toBeDefined();
+  describe('core api properties', () => {
+    it('should define a .baseUrl property', () => {
+      expect(service.baseUrl).toBeDefined();
+    });
+
+    it('should define an .endpoint property', () => {
+      expect(service.endpoint).toBeDefined();
+    });
   });
 
   describe('core api methods', () => {
     const baseUrl = 'http://example.com/';
+    const endpoint = 'example';
     const id = 10;
     const data = { payload: 'ABC' };
 
     beforeEach(() => {
       service.baseUrl = baseUrl;
+      service.endpoint = endpoint;
     });
 
     describe('get all records', () => {
@@ -35,7 +43,7 @@ describe('CoreApiService', () => {
 
       it('should call http.get()', () => {
         service.getAll();
-        expect(http.get).toHaveBeenCalledWith(baseUrl);
+        expect(http.get).toHaveBeenCalledWith(`${baseUrl}${endpoint}`);
       });
 
       it('should return a promise', () => {
@@ -51,7 +59,10 @@ describe('CoreApiService', () => {
 
       it('should call http.post()', () => {
         service.create(data);
-        expect(http.post).toHaveBeenCalledWith(baseUrl, data);
+        expect(http.post).toHaveBeenCalledWith(
+          `${baseUrl}${endpoint}`,
+          data
+        );
       });
 
       it('should return a promise', () => {
@@ -67,7 +78,10 @@ describe('CoreApiService', () => {
 
       it('should call http.put()', () => {
         service.update(id, data);
-        expect(http.put).toHaveBeenCalledWith(`${baseUrl}${id}`, data);
+        expect(http.put).toHaveBeenCalledWith(
+          `${baseUrl}${endpoint}/${id}`,
+          data
+        );
       });
 
       it('should return a promise', () => {
@@ -83,7 +97,9 @@ describe('CoreApiService', () => {
 
       it('should call http.delete()', () => {
         service.delete(id);
-        expect(http.delete).toHaveBeenCalledWith(`${baseUrl}${id}`);
+        expect(http.delete).toHaveBeenCalledWith(
+          `${baseUrl}${endpoint}/${id}`,
+        );
       });
 
       it('should return a promise', () => {
