@@ -6,8 +6,10 @@ console.log('FOR REAL?')
 export class EndpointManager {
   records: any[] = [];
   @bindable title: string = null;
+  @bindable addLabel: string = 'Add Record';
   @bindable columns: Column = <Column>{};
   @bindable apiService: CoreApiService;
+  @bindable formControl: any; // Todo: change to FormControl;
 
 
   apiServiceChanged() {

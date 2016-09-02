@@ -1,7 +1,10 @@
 <template>
+  <require from="./professional-form"></require>
+
   <endpoint-manager
-  api-service.bind="professionals"
   title="Doctores"
+  add-label="Agregar Doctor"
+  api-service.bind="professionals"
   columns.bind="{
     'Nombre Completo': '${firstName} ${lastName}',
     'Teléfono': '${landLine}',
@@ -9,5 +12,11 @@
     'Email': '${email}',
     'Citas Para hoy': '${todaysAppointmentCount}'
   }"
-  ></endpoint-manager>
+  form-control.bind="professionalForm"
+  >
+    <professional-form
+    slot="form"
+    professional-form.ref="professionalForm"
+    ></professional-form>
+  </endpoint-manager>
 </template>

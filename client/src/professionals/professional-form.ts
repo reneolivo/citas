@@ -4,9 +4,9 @@ import {Professionals} from '../services/api/professionals';
 import Toast from '../services/helpers/toast';
 
 @autoinject
-export class ProfessionalDialog {
+export class ProfessionalForm {
   protected professional: ProfessionalModel;
-  @child('modal-form') protected modal;
+  @child('form') protected modal;
 
   constructor(
     protected professionals: Professionals
@@ -14,18 +14,8 @@ export class ProfessionalDialog {
     this.reset();
   }
 
-  open(data?: any) {
-    if (data) {
-      this.professional = new ProfessionalModel(data);
-    } else {
-      this.reset();
-    }
-
-    this.modal.open();
-  }
-
-  close() {
-    this.modal.close();
+  load(data: any) {
+    this.professional = new ProfessionalModel(data);
   }
 
   reset() {

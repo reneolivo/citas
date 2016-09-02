@@ -1,6 +1,13 @@
 <template>
   <h2>${title}</h2>
 
+  <div class="actions">
+    <button class="add" click.delegate="modalForm.open()">
+      ${ addLabel }
+    </button>
+  </div>
+
+
   <table class="records-table striped highlight pointer responsive-table">
     <thead>
       <tr>
@@ -20,4 +27,12 @@
       </tr>
     </tbody>
   </table>
+
+  <modal-form
+  modal-form.ref="modalForm"
+  form-control.bind="formControl"
+  submit-success.delegate="getAllRecords()"
+  >
+    <slot name="form" slot="form"></slot>
+  </modal-form>
 </template>
