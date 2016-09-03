@@ -3,6 +3,7 @@ import {Modal} from './modal';
 import validateForm from '../../services/helpers/validate-form';
 import Toast from '../../services/helpers/toast';
 declare const Materialize: any;
+declare const jQuery: any;
 
 @autoinject
 export class ModalForm {
@@ -39,6 +40,7 @@ export class ModalForm {
   }
 
   reset() {
+    this.focusOnFirstInput();
     this.formElement.reset();
     setTimeout(() => Materialize.updateTextFields(), 0);
   }
@@ -56,6 +58,14 @@ export class ModalForm {
       (result) => this.submitSuccess(result),
       () => this.submitError()
     );
+  }
+
+  focusOnFirstInput() {
+    const element = this.formElement.querySelector('input,select,textarea');
+
+    setTimeout(() => {
+      element && element.focus();
+    }, 0);
   }
 
   protected displayFormWarning() {
