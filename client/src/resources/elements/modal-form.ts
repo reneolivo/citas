@@ -3,7 +3,6 @@ import {Modal} from './modal';
 import validateForm from '../../services/helpers/validate-form';
 import Toast from '../../services/helpers/toast';
 declare const Materialize: any;
-declare const jQuery: any;
 
 @autoinject
 export class ModalForm {
