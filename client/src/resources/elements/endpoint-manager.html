@@ -1,16 +1,26 @@
 <template>
   <h2>${title}</h2>
 
-  <div class="actions">
-    <button class="add" click.delegate="modalForm.open()">
-      ${ addLabel }
-    </button>
-  </div>
+  <div id="main-actions-bar" class="actions">
+   <button class="add" click.delegate="modalForm.open()">
+     ${ addRecordLabel }
+   </button>
+
+   <button
+   class="delete"
+   click.delegate="deleteSelectedRecords()"
+   disabled.bind="selectedRecords.length === 0"
+   >
+     ${ deleteRecordsLabel }
+   </button>
+ </div>
 
 
-  <table class="records-table striped highlight pointer responsive-table">
+  <table class="records-table striped highlight responsive-table">
     <thead>
       <tr>
+        <th></th>
+
         <th repeat.for="column of columns | objectToArray">
           ${column.key}
         </th>
@@ -18,6 +28,17 @@
     </thead>
     <tbody>
       <tr repeat.for="record of records">
+        <td class="center-align">
+          <input
+          type="checkbox"
+          id="record-check-${ record.id }"
+          class="filled-in"
+          model.bind="record"
+          checked.bind="selectedRecords"
+          />
+          <label for="record-check-${ record.id }"></label>
+        </td>
+
         <td repeat.for="column of columns | objectToArray">
           <compile
           content.bind="column.value"
