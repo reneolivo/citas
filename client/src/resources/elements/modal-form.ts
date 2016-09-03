@@ -24,8 +24,13 @@ export class ModalForm {
     protected toast: Toast
   ) {}
 
-  open() {
+  open(record?: any) {
     this.reset();
+
+    if (record && this.formControl) {
+      this.formControl.load(record);
+    }
+
     this.modal.open();
   }
 

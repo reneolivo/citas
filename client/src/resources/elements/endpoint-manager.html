@@ -24,6 +24,8 @@
         <th repeat.for="column of columns | objectToArray">
           ${column.key}
         </th>
+
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -44,6 +46,12 @@
           content.bind="column.value"
           context.bind="record"
           ></compile>
+        </td>
+
+        <td>
+          <a href="#" click.delegate="modalForm.open(record)">
+            <i class="fa fa-pencil"></i>
+          </a>
         </td>
       </tr>
     </tbody>
