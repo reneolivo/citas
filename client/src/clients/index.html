@@ -1,3 +1,29 @@
 <template>
-  <h2>Pacientes</h2>
+  <require from="./client-form"></require>
+
+  <endpoint-manager
+  api-service.bind="clients"
+  columns.bind="{
+    'Nombre Completo': '${firstName} ${lastName}',
+    'Teléfono': '${landLine}',
+    'Celular': '${mobile}',
+    'Email': '${email}'
+  }"
+  form-control.bind="clientForm"
+  >
+    <h2 slot="title">Pacientes</h2>
+
+    <span slot="add-record-label">Agregar Paciente</span>
+
+    <span slot="delete-records-label">Eliminar Paciente</span>
+
+    <span slot="delete-success-message">
+      Pacientes eliminados correctamente
+    </span>
+
+    <client-form
+    slot="form"
+    client-form.ref="clientForm"
+    ></client-form>
+  </endpoint-manager>
 </template>

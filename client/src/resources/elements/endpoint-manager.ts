@@ -1,4 +1,4 @@
-import {autoinject, bindable} from 'aurelia-framework';
+import {autoinject, bindable, child} from 'aurelia-framework';
 import {CoreApiService} from '../../services/api/core-api-service';
 import Toast from '../../services/helpers/toast';
 
@@ -7,15 +7,14 @@ export class EndpointManager {
   records: any[] = [];
   selectedRecords: any[] = [];
 
-  @bindable title: string = null;
-  @bindable addRecordLabel: string = 'Add Record';
-  @bindable deleteRecordsLabel: string = 'Delete Records';
-  @bindable deleteSuccessMessage: string = 'Record deleted successfully';
-  @bindable deleteErrorMessage: string = 'There was an error deleting the record';
-
   @bindable columns: Column = <Column>{};
   @bindable apiService: CoreApiService;
   @bindable formControl: any; // Todo: change to FormControl;
+
+  @child('[slot=delete-success-message]') deleteSuccessMessage;
+  @child('[slot=delete-error-message]') deleteErrorMessage;
+  protected defaultDeleteSuccessMessage: string = 'Record deleted successfully';
+  protected defaultDeleteErrorMessage: string = 'There was an error deleting the record';
 
   constructor(protected toast: Toast) {}
 
@@ -41,13 +40,21 @@ export class EndpointManager {
   }
 
   displayDeleteSuccessMessage() {
+    let message = this.deleteSuccessMessage
+    && this.deleteSuccessMessage.innerText
+    || this.defaultDeleteSuccessMessage;
+
     this.toast.success(`
       <i class="fa fa-check"></i>
-      ${this.deleteSuccessMessage}
+      ${message}
     `);
   }
 
   displayDeleteErrorMessage() {
+    let message = this.deleteErrorMessage
+    && this.deleteErrorMessage.innerText
+    || this.defaultDeleteErrorMessage;
+
     this.toast.error(`
       <i class="fa fa-check"></i>
       ${this.deleteErrorMessage}

@@ -1,9 +1,16 @@
 <template>
-  <h2>${title}</h2>
+  <slot name="title"></slot>
+
+  <div class="messages hide">
+    <slot name="delete-success-message"></slot>
+    <slot name="delete-error-message"></slot>
+  </div>
 
   <div id="main-actions-bar" class="actions">
    <button class="add" click.delegate="modalForm.open()">
-     ${ addRecordLabel }
+     <slot name="add-record-label">
+        Add Record
+     </slot>
    </button>
 
    <button
@@ -11,7 +18,9 @@
    click.delegate="deleteSelectedRecords()"
    disabled.bind="selectedRecords.length === 0"
    >
-     ${ deleteRecordsLabel }
+    <slot name="delete-records-label">
+      Delete Records
+    </slot>
    </button>
  </div>
 
