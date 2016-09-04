@@ -41,7 +41,9 @@ export class ModalForm {
   reset() {
     this.focusOnFirstInput();
     this.formElement.reset();
-    this.formControl.reset();
+
+    this.formControl && this.formControl.reset();
+
     setTimeout(() => Materialize.updateTextFields(), 0);
   }
 
@@ -51,9 +53,8 @@ export class ModalForm {
       return;
     }
 
-    if (!this.formControl) return;
 
-    this.formControl.submit()
+    this.formControl && this.formControl.submit()
     .then(
       (result) => this.submitSuccess(result),
       () => this.submitError()
