@@ -12,12 +12,18 @@ export class CoreApiService {
     return this.http.get(this.getUrl());
   }
 
-  create(data: any = {}) {
-    return this.http.post(this.getUrl(), data);
+  create(data: object = {}) {
+    return this.http.post(
+      this.getUrl(),
+      this.getPlainObject(data)
+    );
   }
 
-  update(id: number, data: any = {}) {
-    return this.http.put(this.getUrl(id), data);
+  update(id: number, data: Object = {}) {
+    return this.http.put(
+      this.getUrl(id),
+      this.getPlainObject(data)
+    );
   }
 
   delete(id: number) {
@@ -30,5 +36,12 @@ export class CoreApiService {
     if (recordId) url += `/${recordId}`;
 
     return url;
+  }
+
+  // Note:
+  // jQuery.post and jQuery.ajax seem to call the object constructor
+  // so we need to send a plain JS Object to avoid unexpected erros
+  protected getPlainObject(data: Object) {
+    return Object.assign({}, data);
   }
 }
