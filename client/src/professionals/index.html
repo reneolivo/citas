@@ -22,6 +22,12 @@
       Doctores eliminados correctamente
     </span>
 
+    <column slot="column" header="Nombre Completo">${firstName} ${lastName}</column>
+    <column slot="column" header="Teléfono">${landLine}</column>
+    <column slot="column" header="Celular">${mobile}</column>
+    <column slot="column" header="Email">${email}</column>
+    <column slot="column" header="Citas Para Hoy">${todaysAppointmentCount}</column>
+
     <professional-form
     slot="form"
     professional-form.ref="professionalForm"

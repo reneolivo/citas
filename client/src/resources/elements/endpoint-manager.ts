@@ -1,13 +1,14 @@
-import {autoinject, bindable, child} from 'aurelia-framework';
+import {autoinject, bindable, child, children} from 'aurelia-framework';
 import {CoreApiService} from '../../services/api/core-api-service';
 import Toast from '../../services/helpers/toast';
+import {Column} from './column';
 
 @autoinject
 export class EndpointManager {
   records: any[] = [];
   selectedRecords: any[] = [];
 
-  @bindable columns: Column = <Column>{};
+  @children('column') columns: Column[];
   @bindable apiService: CoreApiService;
   @bindable formControl: any; // Todo: change to FormControl;
 
@@ -16,7 +17,12 @@ export class EndpointManager {
   protected defaultDeleteSuccessMessage: string = 'Record deleted successfully';
   protected defaultDeleteErrorMessage: string = 'There was an error deleting the record';
 
+
   constructor(protected toast: Toast) {}
+
+  attached() {
+    console.log(this.theColumns);
+  }
 
   apiServiceChanged() {
     this.getAllRecords();
@@ -60,8 +66,4 @@ export class EndpointManager {
       ${this.deleteErrorMessage}
     `);
   }
-}
-
-export interface Column {
-  [header: string]: string;
 }

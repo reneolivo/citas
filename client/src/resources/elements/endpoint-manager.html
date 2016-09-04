@@ -6,6 +6,10 @@
     <slot name="delete-error-message"></slot>
   </div>
 
+  <div class="columns hide">
+    <slot name="column"></slot>
+  </div>
+
   <div id="main-actions-bar" class="actions">
    <button class="add" click.delegate="modalForm.open()">
      <slot name="add-record-label">
@@ -30,8 +34,8 @@
       <tr>
         <th></th>
 
-        <th repeat.for="column of columns | objectToArray">
-          ${column.key}
+        <th repeat.for="column of columns">
+          ${column.header}
         </th>
 
         <th></th>
@@ -50,9 +54,9 @@
           <label for="record-check-${ record.id }"></label>
         </td>
 
-        <td repeat.for="column of columns | objectToArray">
+        <td repeat.for="column of columns">
           <compile
-          content.bind="column.value"
+          content.bind="column.content"
           context.bind="record"
           ></compile>
         </td>

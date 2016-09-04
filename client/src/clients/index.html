@@ -3,12 +3,6 @@
 
   <endpoint-manager
   api-service.bind="clients"
-  columns.bind="{
-    'Nombre Completo': '${firstName} ${lastName}',
-    'Teléfono': '${landLine}',
-    'Celular': '${mobile}',
-    'Email': '${email}'
-  }"
   form-control.bind="clientForm"
   >
     <h2 slot="title">Pacientes</h2>
@@ -20,6 +14,11 @@
     <span slot="delete-success-message">
       Pacientes eliminados correctamente
     </span>
+
+    <column slot="column" header="Nombre Completo">${firstName} ${lastName}</column>
+    <column slot="column" header="Teléfono">${landLine}</column>
+    <column slot="column" header="Celular">${mobile}</column>
+    <column slot="column" header="Email">${email}</column>
 
     <client-form
     slot="form"
