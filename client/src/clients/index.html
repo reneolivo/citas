@@ -1,10 +1,7 @@
 <template>
   <require from="./client-form"></require>
 
-  <endpoint-manager
-  api-service.bind="clients"
-  form-control.bind="clientForm"
-  >
+  <endpoint-manager api-service.bind="clients">
     <h2 slot="title">Pacientes</h2>
 
     <span slot="add-record-label">Agregar Paciente</span>
@@ -20,9 +17,6 @@
     <column slot="column" header="Celular">${mobile}</column>
     <column slot="column" header="Email">${email}</column>
 
-    <client-form
-    slot="form"
-    client-form.ref="clientForm"
-    ></client-form>
+    <client-form slot="form"></client-form>
   </endpoint-manager>
 </template>

@@ -1,5 +1,7 @@
 import {autoinject, bindable, child, children} from 'aurelia-framework';
 import {CoreApiService} from '../../services/api/core-api-service';
+import {ApiForm} from '../../services/api/form/api-form';
+import {CoreApiModel} from '../../services/api/models/core-api-model';
 import Toast from '../../services/helpers/toast';
 import {Column} from './column';
 
@@ -10,19 +12,14 @@ export class EndpointManager {
 
   @children('column') columns: Column[];
   @bindable apiService: CoreApiService;
-  @bindable formControl: any; // Todo: change to FormControl;
 
+  @child('[slot=form]') formControl: ApiForm<CoreApiModel>;
   @child('[slot=delete-success-message]') deleteSuccessMessage;
   @child('[slot=delete-error-message]') deleteErrorMessage;
   protected defaultDeleteSuccessMessage: string = 'Record deleted successfully';
   protected defaultDeleteErrorMessage: string = 'There was an error deleting the record';
 
-
   constructor(protected toast: Toast) {}
-
-  attached() {
-    console.log(this.theColumns);
-  }
 
   apiServiceChanged() {
     this.getAllRecords();

@@ -4,7 +4,7 @@ import {Clients} from '../services/api/clients';
 import {ClientModel} from '../services/api/models/client';
 
 @autoinject
-export class ClientForm extends ApiForm {
+export class ClientForm extends ApiForm<ClientModel> {
   constructor(clients: Clients) {
     super(clients, ClientModel);
   }

@@ -13,7 +13,7 @@ export class Column {
     protected element: Element
   ) {}
 
-  @computedFrom('element')
+  @computedFrom('element.innerHTML')
   get content() {
     return this.element.innerHTML;
   }

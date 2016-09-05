@@ -1,12 +1,12 @@
 import {CoreApiService} from '../core-api-service';
 import {CoreApiModel} from '../models/core-api-model';
 
-export class ApiForm {
-  protected record: Object = {};
+export class ApiForm<T extends CoreApiModel> {
+  protected record: CoreApiModel = new CoreApiModel();
 
   constructor(
     protected apiService: CoreApiService,
-    protected modelClass: CoreApiModel
+    protected modelClass: new (data?: Object) => T
   ) {
     this.reset();
   }

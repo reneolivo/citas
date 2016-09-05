@@ -1,5 +1,7 @@
 export class CoreApiModel {
-  constructor(record: any = {}) {
+  id: number = null;
+
+  constructor(record: Object = {}) {
     Object.assign(this, record || {});
   }
 }

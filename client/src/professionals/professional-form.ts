@@ -4,7 +4,7 @@ import {Professionals} from '../services/api/professionals';
 import {ProfessionalModel} from '../services/api/models/professional';
 
 @autoinject
-export class ProfessionalForm extends ApiForm {
+export class ProfessionalForm extends ApiForm<ProfessionalModel> {
   constructor(professionals: Professionals) {
     super(professionals, ProfessionalModel);
   }

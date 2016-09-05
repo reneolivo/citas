@@ -12,7 +12,7 @@ export class CoreApiService {
     return this.http.get(this.getUrl());
   }
 
-  create(data: object = {}) {
+  create(data: Object = {}) {
     return this.http.post(
       this.getUrl(),
       this.getPlainObject(data)
