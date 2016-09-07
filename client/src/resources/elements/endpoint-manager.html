@@ -1,6 +1,4 @@
 <template>
-  <slot name="title"></slot>
-
   <div class="messages hide">
     <slot name="delete-success-message"></slot>
     <slot name="delete-error-message"></slot>
@@ -10,65 +8,72 @@
     <slot name="column"></slot>
   </div>
 
-  <div id="main-actions-bar" class="actions">
-   <button class="add" click.delegate="modalForm.open()">
-     <slot name="add-record-label">
+  <main-section>
+    <slot name="title" slot="title"></slot>
+
+    <button
+    slot="action"
+    class="add"
+    click.delegate="modalForm.open()"
+    >
+      <slot name="add-record-label">
         Add Record
-     </slot>
-   </button>
+       </slot>
+    </button>
 
-   <button
-   class="delete"
-   click.delegate="deleteSelectedRecords()"
-   disabled.bind="selectedRecords.length === 0"
-   >
-    <slot name="delete-records-label">
-      Delete Records
-    </slot>
-   </button>
- </div>
+    <button
+    slot="action"
+    class="delete"
+    click.delegate="deleteSelectedRecords()"
+    disabled.bind="selectedRecords.length === 0"
+    >
+      <slot name="delete-records-label">
+        Delete Records
+      </slot>
+    </button>
 
 
-  <table class="records-table striped highlight responsive-table">
-    <thead>
-      <tr>
-        <th></th>
+    <table slot="content" class="records-table striped highlight responsive-table">
+      <thead>
+        <tr>
+          <th></th>
 
-        <th repeat.for="column of columns">
-          ${column.header}
-        </th>
+          <th repeat.for="column of columns">
+            ${column.header}
+          </th>
 
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr repeat.for="record of records">
-        <td class="center-align">
-          <input
-          type="checkbox"
-          id="record-check-${ record.id }"
-          class="filled-in"
-          model.bind="record"
-          checked.bind="selectedRecords"
-          />
-          <label for="record-check-${ record.id }"></label>
-        </td>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr repeat.for="record of records">
+          <td class="center-align">
+            <input
+            type="checkbox"
+            id="record-check-${ record.id }"
+            class="filled-in"
+            model.bind="record"
+            checked.bind="selectedRecords"
+            />
+            <label for="record-check-${ record.id }"></label>
+          </td>
 
-        <td repeat.for="column of columns">
-          <compile
-          content.bind="column.content"
-          context.bind="record"
-          ></compile>
-        </td>
+          <td repeat.for="column of columns">
+            <compile
+            content.bind="column.content"
+            context.bind="record"
+            ></compile>
+          </td>
 
-        <td>
-          <a href="#" click.delegate="modalForm.open(record)">
-            <i class="fa fa-pencil"></i>
-          </a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+          <td>
+            <a href="#" click.delegate="modalForm.open(record)">
+              <i class="fa fa-pencil"></i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </main-section>
 
   <modal-form
   modal-form.ref="modalForm"

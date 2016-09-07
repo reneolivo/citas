@@ -8,6 +8,7 @@ export function configure(config: FrameworkConfiguration) {
     './elements/endpoint-manager',
     './value-converters/object-to-array',
     './elements/compile',
-    './elements/column'
+    './elements/column',
+    './elements/main-section'
   ]);
 }
