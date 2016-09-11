@@ -1,0 +1,21 @@
+$crosshair-color: #FFFFFF;
+
+table.crosshair-table {
+  overflow: hidden;
+
+  tr:hover { background: $crosshair-color; }
+  td, th { position: relative; }
+  td:hover::after,
+  th:hover::after {
+    content: '';
+    position: absolute;
+    background: $crosshair-color;
+    left: 0;
+    top: -5000px;
+    height: 10000px;
+    width: 100%;
+    z-index: -1;
+  }
+
+  tbody td, thead th { text-align: center; }
+}

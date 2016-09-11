@@ -1,7 +1,11 @@
 <template>
   <require from="./professional-form"></require>
+  <require from="./availability-form"></require>
 
-  <endpoint-manager api-service.bind="professionals">
+  <endpoint-manager
+  api-service.bind="professionals"
+  open-calendar.delegate="availabilityModalForm.open($event.detail)"
+  >
     <h2 slot="title">Doctores</h2>
 
     <span slot="add-record-label">Agregar Doctor</span>
@@ -12,12 +16,29 @@
       Doctores eliminados correctamente
     </span>
 
-    <column slot="column" header="Nombre Completo">${firstName} ${lastName}</column>
+    <column slot="column" header="Nombre Completo">
+      <a href="#/professionals/${id}">
+        ${firstName} ${lastName}
+      </a>
+    </column>
     <column slot="column" header="Teléfono">${landLine}</column>
     <column slot="column" header="Celular">${mobile}</column>
     <column slot="column" header="Email">${email}</column>
     <column slot="column" header="Citas Para Hoy">${todaysAppointmentCount}</column>
+    <column slot="column" header="Disponibilidad">
+      <a class="btn-floating btn-flat blue" click-trigger="event: open-calendar; detail.bind: $this">
+        <i class="fa fa-calendar"></i>
+      </a>
+    </column>
 
     <professional-form slot="form"></professional-form>
   </endpoint-manager>
+
+  <modal-form
+  modal-form.ref="availabilityModalForm"
+  form-control.bind="availabilityForm"
+  width="80%"
+  >
+    <availability-form availability-form.ref="availabilityForm"></availability-form>
+  </modal-form>
 </template>

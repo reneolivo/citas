@@ -9,6 +9,7 @@ export function configure(config: FrameworkConfiguration) {
     './value-converters/object-to-array',
     './elements/compile',
     './elements/column',
-    './elements/main-section'
+    './elements/main-section',
+    './attributes/click-trigger'
   ]);
 }

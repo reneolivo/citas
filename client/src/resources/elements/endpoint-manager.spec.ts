@@ -34,10 +34,6 @@ describe('EndpointManager', () => {
   });
 
   describe('Properties', () => {
-    it('should define a .columns property', () => {
-      expect(element.columns).toEqual({});
-    });
-
     it('should define a .records property', () => {
       expect(element.records).toEqual([]);
     });

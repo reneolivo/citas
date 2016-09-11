@@ -11,6 +11,7 @@ export class ModalForm {
   @bindable public formErrorMessage: string;
 
   @bindable public formControl: any;
+  @bindable public width: string = '500px';
 
   protected defaultSuccessMessage: string = 'Formulario guardado correctamente.';
   protected defaultErrorMessage: string = 'Hubo un error. Intente de nuevo.';

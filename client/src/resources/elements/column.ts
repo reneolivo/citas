@@ -7,6 +7,7 @@ import {
 
 @processContent(false)
 @noView
+@autoinject
 export class Column {
   @bindable header;
   constructor(

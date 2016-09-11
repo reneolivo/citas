@@ -4,7 +4,6 @@ import {
   autoinject,
   TemplatingEngine} from 'aurelia-framework';
 
-console.log('COMPILE');
 @noView
 @autoinject
 export class Compile {
