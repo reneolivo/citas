@@ -23,7 +23,18 @@
           <tr repeat.for="template of templates">
             <th>${template.timeStarts} - ${template.timeEnds}</th>
             <td repeat.for="i of 7">
-              <input type="checkbox" id="record-a-${ template.id }-${ $index }" class="filled-in" />
+              <input
+              type="checkbox"
+              id="record-a-${ template.id }-${ $index }"
+              model.bind="{
+                professionalId: record.id,
+                weekDay: i + 1,
+                timeStarts: template.timeStarts,
+                timeEnds: template.timeEnds
+              }"
+              checked.bind="selectedAvailabilities"
+              matcher.bind="availabilityMatcher"
+              class="filled-in" />
               <label for="record-a-${ template.id }-${ $index }"></label>
             </td>
           </tr>

@@ -8,6 +8,7 @@ import {AvailabilityModel} from '../services/api/models/availability';
 @autoinject
 export class AvailabilityForm extends ApiForm<ProfessionalModel> {
   protected templates: AvailabilityModel[] = [];
+  protected selectedAvailabilities: AvailabilityModel[] = [];
 
   constructor(
     protected availabilities: Availabilities,
@@ -19,7 +20,17 @@ export class AvailabilityForm extends ApiForm<ProfessionalModel> {
   }
 
   protected getAllAvailabilityTemplates() {
-    this.availabilitiesTemplates
+    return this.availabilitiesTemplates
     .getAll().then((templates) => this.templates = templates);
+  }
+
+  protected availabilityMatcher(
+    availabilityA: AvailabilityModel,
+    availabilityB: AvailabilityModel
+  ): boolean {
+    return availabilityA && availabilityB
+    && availabilityA.weekDay === availabilityB.weekDay
+    && availabilityA.timeStarts === availabilityA.timeStarts
+    && availabilityA.timeEnds === availabilityB.timeEnds;
   }
 }

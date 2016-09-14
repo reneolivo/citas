@@ -11,9 +11,8 @@ describe('AvailabilityForm', () => {
     const methods = ['getAll', 'create', 'update', 'delete'];
 
     templates = [
-      { weekDay: 1, timeStarts: 8, timeEnds: 12 },
-      { weekDay: 2, timeStarts: 8, timeEnds: 12 },
-      { weekDay: 3, timeStarts: 8, timeEnds: 12 }
+      { id: 1, timeStarts: 8, timeEnds: 14, limit: 50 },
+      { id: 2, timeStarts: 14, timeEnds: 20, limit: 50 }
     ];
 
     promise = Promise.resolve(templates);
@@ -29,7 +28,7 @@ describe('AvailabilityForm', () => {
     component = new AvailabilityForm(availabilities, availabilityTemplates);
   });
 
-  it('define a .templates property', () => {
+  it('should define a .templates property', () => {
     expect(component.templates).toEqual([]);
   });
 
@@ -40,5 +39,25 @@ describe('AvailabilityForm', () => {
       expect(component.templates).toEqual(templates);
       next();
     }, 0);
+  });
+
+  describe('Availability Matcher', () => {
+    it('should define a .availabilityMatcher() method', () => {
+      expect(typeof component.availabilityMatcher).toBe('function');
+    });
+
+    it('should return true if param A and param B are equal', () => {
+      const paramA = { id: 1, weekDay: 2, timeStarts: 10, timeEnds: 12, limit: 40 };
+      const paramB = { id: 1, weekDay: 2, timeStarts: 10, timeEnds: 12, limit: 40 };
+      const result = component.availabilityMatcher(paramA, paramB);
+      expect(result).toBe(true);
+    });
+
+    it('should return false if param A and param B are not equal', () => {
+      const paramA = { id: 1, weekDay: 2, timeStarts: 10, timeEnds: 12, limit: 40 };
+      const paramB = { id: 2, weekDay: 3, timeStarts: 10, timeEnds: 12, limit: 40 };
+      const result = component.availabilityMatcher(paramA, paramB);
+      expect(result).toBe(false);
+    });
   });
 });
