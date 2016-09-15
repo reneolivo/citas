@@ -41,6 +41,27 @@ describe('AvailabilityForm', () => {
     }, 0);
   });
 
+  describe('getting availabilities for the professional', () => {
+    it(`should get all the professional's
+    availabilities when .load() is called`, () => {
+      component.load({ id: 123 });
+
+      expect(availabilities.getAll).toHaveBeenCalledWith(
+        { professionalId: 123 }
+      );
+    });
+
+    it(`should update the .selectedAvailabilities with the result
+    from availabilities.getAll()`, (next) => {
+      component.load({ id: 123 });
+
+      setTimeout(() => {
+        expect(component.selectedAvailabilities).toBe(templates);
+        next();
+      }, 0);
+    });
+  });
+
   describe('Availability Matcher', () => {
     it('should define a .availabilityMatcher() method', () => {
       expect(typeof component.availabilityMatcher).toBe('function');

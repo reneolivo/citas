@@ -19,9 +19,20 @@ export class AvailabilityForm extends ApiForm<ProfessionalModel> {
     this.getAllAvailabilityTemplates();
   }
 
+  load(record: ProfessionalModel) {
+    super.load(record);
+
+    this.getProfessionalAvailability();
+  }
+
   protected getAllAvailabilityTemplates() {
     return this.availabilitiesTemplates
     .getAll().then((templates) => this.templates = templates);
+  }
+
+  protected getProfessionalAvailability() {
+    this.availabilities.getAll({ professionalId: this.record.id })
+    .then((result) => this.selectedAvailabilities = result);
   }
 
   protected availabilityMatcher(

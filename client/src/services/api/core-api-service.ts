@@ -8,8 +8,8 @@ export class CoreApiService {
 
   constructor(protected http: Http) {}
 
-  getAll() {
-    return this.http.get(this.getUrl());
+  getAll(filters: Object = null) {
+    return this.http.get(this.getUrl(null, filters));
   }
 
   create(data: Object = {}) {
@@ -30,12 +30,29 @@ export class CoreApiService {
     return this.http.delete(this.getUrl(id));
   }
 
-  protected getUrl(recordId?: number) {
+  protected getUrl(
+    append: number|string = null,
+    filters: Object = null
+  ) {
     let url = `${this.baseUrl}${this.endpoint}`;
 
-    if (recordId) url += `/${recordId}`;
+    if (append) url += `/${append}`;
+
+    if (filters !== null) {
+      url += '?' + this.getFilterString(filters);
+    }
 
     return url;
+  }
+
+  protected getFilterString(filters: Object) {
+    let filterString = '';
+
+    for(var key in filters) {
+      filterString += `filter[where][${key}]=${filters[key]}&`
+    }
+
+    return filterString;
   }
 
   // Note:

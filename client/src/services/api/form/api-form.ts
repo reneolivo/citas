@@ -11,7 +11,7 @@ export class ApiForm<T extends CoreApiModel> {
     this.reset();
   }
 
-  load(record: Object) {
+  load(record: T) {
     this.record = new this.modelClass(record);
   }
 

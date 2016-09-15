@@ -52,6 +52,40 @@ describe('CoreApiService', () => {
       });
     });
 
+    describe('filtering records', () => {
+      it('should add a filtering condition if a parameter is provided', () => {
+        const filter = { condition: 'ABC' };
+
+        service.getAll(filter);
+
+        expect(http.get).toHaveBeenCalledWith(
+          jasmine.stringMatching(/filter\[where\]\[condition\]=ABC/)
+        );
+      });
+
+      it('should accept several filtering conditions', () => {
+        const filters = {
+          condition1: 'ABC',
+          condition2: 'XYZ'
+        };
+
+        service.getAll(filters);
+
+        expect(http.get).toHaveBeenCalledWith(
+          jasmine.stringMatching(
+            /filter\[where\]\[condition1\]=ABC&filter\[where\]\[condition2\]=XYZ/
+          )
+        );
+      });
+
+      it('should not add any filters if no parameters are provided', () => {
+        service.getAll();
+        expect(http.get).not.toHaveBeenCalledWith(
+          jasmine.stringMatching('filter[where]')
+        );
+      });
+    });
+
     describe('create new record', () => {
       it('should define a .create() method', () => {
         expect(typeof service.create).toBe('function');
