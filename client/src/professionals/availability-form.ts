@@ -12,11 +12,10 @@ export class AvailabilityForm extends ApiForm<ProfessionalModel> {
   protected selectedAvailabilities: AvailabilityModel[] = [];
 
   constructor(
-    protected availabilities: Availabilities,
-    protected availabilitiesTemplates: AvailabilityTemplates,
-    protected professionals: Professionals
+    protected professionals: Professionals,
+    protected availabilitiesTemplates: AvailabilityTemplates
   ) {
-    super(availabilities, ProfessionalModel);
+    super(professionals, ProfessionalModel);
 
     this.getAllAvailabilityTemplates();
   }
@@ -28,7 +27,7 @@ export class AvailabilityForm extends ApiForm<ProfessionalModel> {
   }
 
   submit() {
-    return this.professionals.availabilities(
+    return this.professionals.setAvailabilities(
       this.record.id,
       this.selectedAvailabilities
     );
@@ -40,7 +39,7 @@ export class AvailabilityForm extends ApiForm<ProfessionalModel> {
   }
 
   protected getProfessionalAvailability() {
-    this.availabilities.getAll({ professionalId: this.record.id })
+    this.professionals.getAvailabilities(this.record.id)
     .then((result) => this.selectedAvailabilities = result);
   }
 

@@ -2,7 +2,6 @@ import {AvailabilityForm} from './availability-form';
 
 describe('AvailabilityForm', () => {
   let component;
-  let availabilities;
   let professionals;
   let availabilityTemplates;
   let promise;
@@ -18,22 +17,23 @@ describe('AvailabilityForm', () => {
 
     promise = Promise.resolve(templates);
 
-    availabilities = jasmine.createSpyObj('Availabilities', methods);
     availabilityTemplates = jasmine.createSpyObj('AvailabilityTemplates', methods);
-    professionals = jasmine.createSpyObj('Professionals', methods.concat('availabilities'));
+    professionals = jasmine.createSpyObj('Professionals', methods.concat(
+      'getAvailabilities',
+      'setAvailabilities'
+    ));
 
     methods.forEach((method) => {
-      availabilities[ method ].and.returnValue(promise);
       professionals[ method ].and.returnValue(promise);
       availabilityTemplates[ method ].and.returnValue(promise);
     });
 
-    professionals.availabilities.and.returnValue(promise);
+    professionals.getAvailabilities.and.returnValue(promise);
+    professionals.setAvailabilities.and.returnValue(promise);
 
     component = new AvailabilityForm(
-      availabilities,
-      availabilityTemplates,
-      professionals
+      professionals,
+      availabilityTemplates
     );
   });
 
@@ -55,9 +55,8 @@ describe('AvailabilityForm', () => {
     availabilities when .load() is called`, () => {
       component.load({ id: 123 });
 
-      expect(availabilities.getAll).toHaveBeenCalledWith(
-        { professionalId: 123 }
-      );
+      expect(professionals.getAvailabilities)
+      .toHaveBeenCalledWith(123);
     });
 
     it(`should update the .selectedAvailabilities with the result
@@ -103,10 +102,10 @@ describe('AvailabilityForm', () => {
       component.record = professionalRecord;
     });
 
-    it('should call professionals.availabilities()', () => {
+    it('should call professionals.setAvailabilities()', () => {
       component.submit();
 
-      expect(professionals.availabilities).toHaveBeenCalledWith(
+      expect(professionals.setAvailabilities).toHaveBeenCalledWith(
         professionalRecord.id,
         availabilities
       );
