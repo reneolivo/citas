@@ -38,7 +38,12 @@ describe('Http', () => {
 
     it('should call jQuery.post', () => {
       http.post(url, data);
-      expect(jQuery.post).toHaveBeenCalledWith(url, data);
+      expect(jQuery.ajax).toHaveBeenCalledWith({
+        url: url,
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(data)
+      });
     });
 
     it('should return a promise', () => {

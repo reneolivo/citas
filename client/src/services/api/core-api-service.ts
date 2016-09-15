@@ -30,6 +30,13 @@ export class CoreApiService {
     return this.http.delete(this.getUrl(id));
   }
 
+  protected replace(subendpoint: string, data: Object = {}) {
+    const url = this.getUrl() + `/${subendpoint}`;
+
+    return this.http.delete(url)
+    .then(() => this.http.post(url, data));
+  }
+
   protected getUrl(
     append: number|string = null,
     filters: Object = null
@@ -58,7 +65,9 @@ export class CoreApiService {
   // Note:
   // jQuery.post and jQuery.ajax seem to call the object constructor
   // so we need to send a plain JS Object to avoid unexpected erros
-  protected getPlainObject(data: Object) {
-    return Object.assign({}, data);
+  protected getPlainObject(data: Object | Object[]) {
+    return Array.isArray(data) ?
+      data.map((item) => Object.assign({}, item)) :
+      Object.assign({}, data);
   }
 }

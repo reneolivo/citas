@@ -5,11 +5,16 @@ export class Http {
     return jQuery.get(url);
   }
 
-  post(url: string, data: any = {}) {
-    return jQuery.post(url, data);
+  post(url: string, data: Object | Object[] = {}) {
+    return jQuery.ajax({
+      url: url,
+      type: 'POST',
+      data: JSON.stringify(data),
+      contentType: 'application/json'
+    });
   }
 
-  put(url: string, data: any = {}) {
+  put(url: string, data: Object = {}) {
     return jQuery.ajax({
       url: url,
       type: 'PUT',

@@ -141,5 +141,32 @@ describe('CoreApiService', () => {
         expect(result).toBe(promise);
       });
     });
+
+    describe('replacing records', () => {
+      const subendpoint = 'sub/endpoint/1';
+      const url = `${baseUrl}${endpoint}/${subendpoint}`;
+
+      it('should define a .replace() method', () => {
+        expect(typeof service.replace).toBe('function');
+      });
+
+      it('should call http.delete() and http.post()', (next) => {
+        service.replace(subendpoint, data);
+
+        setTimeout(() => {
+          expect(http.delete).toHaveBeenCalledWith(url);
+
+          setTimeout(() => {
+            expect(http.post).toHaveBeenCalledWith(url, data);
+            next();
+          }, 0);
+        }, 0);
+      });
+
+      it('should return a promise', () => {
+        const result = service.replace(url, data);
+        expect(result instanceof Promise).toEqual(true);
+      });
+    });
   });
 });

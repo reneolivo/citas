@@ -1,6 +1,7 @@
 import {autoinject} from 'aurelia-framework';
 import {ApiForm} from '../services/api/form/api-form';
 import {Availabilities} from '../services/api/availabilities';
+import {Professionals} from '../services/api/professionals';
 import {AvailabilityTemplates} from '../services/api/availability-templates';
 import {ProfessionalModel} from '../services/api/models/professional';
 import {AvailabilityModel} from '../services/api/models/availability';
@@ -12,7 +13,8 @@ export class AvailabilityForm extends ApiForm<ProfessionalModel> {
 
   constructor(
     protected availabilities: Availabilities,
-    protected availabilitiesTemplates: AvailabilityTemplates
+    protected availabilitiesTemplates: AvailabilityTemplates,
+    protected professionals: Professionals
   ) {
     super(availabilities, ProfessionalModel);
 
@@ -23,6 +25,13 @@ export class AvailabilityForm extends ApiForm<ProfessionalModel> {
     super.load(record);
 
     this.getProfessionalAvailability();
+  }
+
+  submit() {
+    return this.professionals.availabilities(
+      this.record.id,
+      this.selectedAvailabilities
+    );
   }
 
   protected getAllAvailabilityTemplates() {

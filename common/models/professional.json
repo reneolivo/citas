@@ -19,7 +19,14 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "availabilities": {
+      "type": "hasMany",
+      "model": "Availability",
+      "as": "availabilities",
+      "foreignKey": "professionalId"
+    }
+  },
   "acls": [],
   "methods": {}
 }

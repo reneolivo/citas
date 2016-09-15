@@ -3,6 +3,7 @@ import {AvailabilityForm} from './availability-form';
 describe('AvailabilityForm', () => {
   let component;
   let availabilities;
+  let professionals;
   let availabilityTemplates;
   let promise;
   let templates;
@@ -19,13 +20,21 @@ describe('AvailabilityForm', () => {
 
     availabilities = jasmine.createSpyObj('Availabilities', methods);
     availabilityTemplates = jasmine.createSpyObj('AvailabilityTemplates', methods);
+    professionals = jasmine.createSpyObj('Professionals', methods.concat('availabilities'));
 
     methods.forEach((method) => {
       availabilities[ method ].and.returnValue(promise);
+      professionals[ method ].and.returnValue(promise);
       availabilityTemplates[ method ].and.returnValue(promise);
     });
 
-    component = new AvailabilityForm(availabilities, availabilityTemplates);
+    professionals.availabilities.and.returnValue(promise);
+
+    component = new AvailabilityForm(
+      availabilities,
+      availabilityTemplates,
+      professionals
+    );
   });
 
   it('should define a .templates property', () => {
@@ -79,6 +88,33 @@ describe('AvailabilityForm', () => {
       const paramB = { id: 2, weekDay: 3, timeStarts: 10, timeEnds: 12, limit: 40 };
       const result = component.availabilityMatcher(paramA, paramB);
       expect(result).toBe(false);
+    });
+  });
+
+  describe('submiting availabilities', () => {
+    let professionalRecord;
+    let availabilities;
+
+    beforeEach(() => {
+      professionalRecord = { id: 1, firstName: 'Jon', lastName: 'Snow' };
+      availabilities = [ templates[1] ];
+
+      component.selectedAvailabilities = availabilities;
+      component.record = professionalRecord;
+    });
+
+    it('should call professionals.availabilities()', () => {
+      component.submit();
+
+      expect(professionals.availabilities).toHaveBeenCalledWith(
+        professionalRecord.id,
+        availabilities
+      );
+    });
+
+    it('should return a promise', () => {
+      const result = component.submit();
+      expect(result).toBe(promise);
     });
   });
 });
